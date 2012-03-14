@@ -737,9 +737,9 @@ SQL
         # the types are taken from here
         # http://dcx.sybase.com/1101/en/dbprogramming_en11/pg-c-api-native-type-enum.html
         def native_type_to_ruby_type(native_type, value)
-          case native_type
+         case native_type
           when 484 # DT_DECIMAL (also and more importantly numeric)
-            BigDecimal.new(value)
+		    value.nil? ? 0 : BigDecimal.new(value)
           else
             value
           end
