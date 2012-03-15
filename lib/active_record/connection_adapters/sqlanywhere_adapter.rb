@@ -740,6 +740,9 @@ SQL
          case native_type
           when 484 # DT_DECIMAL (also and more importantly numeric)
 		    value.nil? ? 0 : BigDecimal.new(value)
+          when 448,452
+             # hack, not sure how to manage proper encoding
+             value.nil? ? value : value.force_encoding("UTF-8")  
           else
             value
           end
